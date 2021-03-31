@@ -38,6 +38,33 @@ Board::~Board()
 //----------------------------------------------------------------------------------------------------------------------
 void Board::initializeFields(char** fields)
 {
+  for (size_t i = 0; i < height_; i++)
+  {
+    std::vector<Field*> row;
+    for (size_t j = 0; j < width_; j++)
+    {
+      char c = fields[i][j];
+      if (c == '#')
+      {
+        row.push_back(new Road(false, {i, j}));
+      }
+      else if (c == '%')
+      {
+        row.push_back(new Road(true, {i, j}));
+      }
+      else if (c >= 'A' && c <= 'Z')
+      {
+        Item* item = new Item(c, {i, j});
+        items_.push_back(item);
+        row.push_back(item);
+      }
+      else
+      {
+        row.push_back(NULL);
+      }
+    }
+    board_.push_back(row);
+  }
   /* 
    * TODO begin: 
    * - iterate over the 2D-array fields
@@ -87,6 +114,8 @@ bool Board::findPath(Item* from_item, Item* to_item)
    */
 
   //TODO end
+
+  return true;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
