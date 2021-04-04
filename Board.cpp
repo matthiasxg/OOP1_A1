@@ -157,7 +157,6 @@ bool Board::findPath(std::vector<Coordinates> visited, Field* from, Item* to_ite
 
   for (Coordinates neighbour : neighbours)
   {
-    printf("NB: %zu|%zu\n", neighbour.row_,neighbour.column_);
     if (!check_visit(visited, neighbour))
     {
       visited.push_back(neighbour);
@@ -171,7 +170,6 @@ bool Board::findPath(std::vector<Coordinates> visited, Field* from, Item* to_ite
 
         if (!check->isBlocked())
         {
-          printf("%zu|%zu\n", check->getPosition().row_, check->getPosition().column_);
           if(findPath(visited, check, to_item))
           {
             return true;
