@@ -14,10 +14,9 @@
 class Road : public Field
 {
   bool blocked_;
+  inline static int number_of_blocked_roads_ = 0;
 
   public:
-    inline static int number_of_blocked_roads_ = 0;
-
     Road(bool blocked, Coordinates pos);
 
     static int getNumberOfBlockedRoads()
@@ -31,6 +30,7 @@ class Road : public Field
     }
 
     void print();
+    ~Road();
 };
 
 #endif // A1_ROAD_HPP

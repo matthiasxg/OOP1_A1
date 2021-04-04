@@ -18,13 +18,13 @@ typedef struct _Coordinates_
 
 class Field
 {
+  inline static int counter_ = 0;
+
   protected:
     int field_id_;
     Coordinates position_;
 
   public:
-    inline static int counter_ = 0;
-
     Field() = default;
     Field(Coordinates pos) : field_id_{counter_++}, position_(pos) {}
 

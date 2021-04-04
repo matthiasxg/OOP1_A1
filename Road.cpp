@@ -17,6 +17,14 @@ Road::Road(bool blocked, Coordinates pos)
   }
 }
 
+Road::~Road()
+{
+  if (blocked_)
+  {
+    number_of_blocked_roads_--;
+  }
+}
+
 void Road::print()
 {
   printf("%c", blocked_ ? '%' : '#');

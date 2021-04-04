@@ -65,14 +65,6 @@ void Board::initializeFields(char** fields)
     }
     board_.push_back(row);
   }
-  /* 
-   * TODO begin: 
-   * - iterate over the 2D-array fields
-   * - create "Road" and "Item" objects on the heap and store them in the board_ std::vector
-   * - add items to the items_ std::vector
-   */
-
-  // TODO end
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -115,14 +107,6 @@ Item* Board::getItemByName(std::string name)
 //----------------------------------------------------------------------------------------------------------------------
 bool Board::findPath(Item* from_item, Item* to_item)
 {
-  /*
-   * TODO begin:
-   * implement your path-finding algorithm here
-   * if you want to use subroutines, implement them directly below this method and add them to the Board.hpp
-   */
-
-  //TODO end
-
   if (from_item->getPosition().column_ == to_item->getPosition().column_)
   {
     if (from_item->getPosition().row_ == to_item->getPosition().row_)

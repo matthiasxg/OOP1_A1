@@ -29,6 +29,8 @@ class Item : public Field
     }
 
     void print();
+
+    ~Item() = default;
 };
 
 
