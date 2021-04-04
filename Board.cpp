@@ -151,7 +151,7 @@ bool Board::findPath(Item* from_item, Item* to_item)
  * to implement them here.
  */
 
-bool Board::findPath(std::vector<Coordinates> visited, Field* from, Item* to_item)
+bool Board::findPath(std::vector<Coordinates> &visited, Field* from, Item* to_item)
 {
   std::vector<Coordinates> neighbours = getNeighbours(from->getPosition());
 
@@ -181,7 +181,7 @@ bool Board::findPath(std::vector<Coordinates> visited, Field* from, Item* to_ite
   return false;
 }
 
-bool Board::check_visit(std::vector<Coordinates> visited, Coordinates coordinates)
+bool Board::check_visit(std::vector<Coordinates> &visited, Coordinates coordinates)
 {
   if (visited.empty())
   {

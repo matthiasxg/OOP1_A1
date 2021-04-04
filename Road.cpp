@@ -7,12 +7,14 @@
 
 #include "Road.hpp"
 
-int Road::number_of_blocked_roads_ = 0;
-
 Road::Road(bool blocked, Coordinates pos)
 {
   blocked_ = blocked;
   position_ = pos;
+  if (blocked)
+  {
+    number_of_blocked_roads_++;
+  }
 }
 
 void Road::print()

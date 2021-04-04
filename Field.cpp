@@ -7,4 +7,3 @@
 
 #include "Field.hpp"
 
-int Field::counter_ = 0;

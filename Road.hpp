@@ -16,7 +16,7 @@ class Road : public Field
   bool blocked_;
 
   public:
-    static int number_of_blocked_roads_;
+    inline static int number_of_blocked_roads_ = 0;
 
     Road(bool blocked, Coordinates pos);
 

@@ -104,10 +104,10 @@ class Board
      */
 
 
-    bool findPath(std::vector<Coordinates> visited, Field* from, Item* to_item);
+    bool findPath(std::vector<Coordinates> &visited, Field* from, Item* to_item);
     std::vector<Coordinates> getNeighbours(Coordinates coordinates);
     bool onBoard(Coordinates coordinates);
-    bool check_visit(std::vector<Coordinates>visited, Coordinates coordinates);
+    bool check_visit(std::vector<Coordinates> &visited, Coordinates coordinates);
     // TODO end
 
   public:

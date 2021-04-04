@@ -23,7 +23,7 @@ class Field
     Coordinates position_;
 
   public:
-    static int counter_;
+    inline static int counter_ = 0;
 
     Field() = default;
     Field(Coordinates pos) : field_id_{counter_++}, position_(pos) {}
