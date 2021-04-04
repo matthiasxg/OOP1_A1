@@ -45,6 +45,7 @@ class Field
 
     virtual bool isBlocked() = 0;
     virtual void print() = 0;
+    virtual ~Field() = default;
 };
 
 

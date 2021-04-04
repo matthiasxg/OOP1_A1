@@ -20,6 +20,7 @@ class Item;
  * TODO begin: If you need any additional includes or forward declarations of
  * classes you can add them here.
  */
+#include "Field.hpp"
 
 // TODO end
 
@@ -55,6 +56,7 @@ class Board
     /// Deleted Copy-Constructor
     //
     Board(Board&) = delete;
+
 
     //------------------------------------------------------------------------------------------------------------------
     /// Destructor
@@ -101,6 +103,11 @@ class Board
      * to declare them here.
      */
 
+
+    bool findPath(std::vector<Coordinates> visited, Field* from, Item* to_item);
+    std::vector<Coordinates> getNeighbours(Coordinates coordinates);
+    bool onBoard(Coordinates coordinates);
+    bool check_visit(std::vector<Coordinates>visited, Coordinates coordinates);
     // TODO end
 
   public:

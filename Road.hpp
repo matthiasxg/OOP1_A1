@@ -27,7 +27,7 @@ class Road : public Field
 
     bool isBlocked()
     {
-      return true;
+      return blocked_;
     }
 
     void print();

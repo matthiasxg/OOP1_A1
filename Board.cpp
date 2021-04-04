@@ -86,6 +86,14 @@ void Board::deleteFields(void)
    *   so that the entire "Road" or "Item" object will be destroyed
    */
 
+  for (unsigned long i = 0; i < board_.size(); i++)
+  {
+    for (unsigned long j = 0; j < board_.at(i).size(); j++)
+    {
+      delete board_[i][j];
+    }
+  }
+
   // TODO end
 }
 
@@ -115,7 +123,26 @@ bool Board::findPath(Item* from_item, Item* to_item)
 
   //TODO end
 
-  return true;
+  if (from_item->getPosition().column_ == to_item->getPosition().column_)
+  {
+    if (from_item->getPosition().row_ == to_item->getPosition().row_)
+    {
+      return true;
+    }
+  }
+
+  if (!onBoard(from_item->getPosition()) || !onBoard(to_item->getPosition()))
+  {
+    return false;
+  }
+
+  std::vector<Coordinates> visited;
+  if (findPath(visited, from_item, to_item))
+  {
+    return true;
+  }
+
+  return false;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -123,6 +150,92 @@ bool Board::findPath(Item* from_item, Item* to_item)
  * TODO begin: If you need any helper methods for the path finding, feel free
  * to implement them here.
  */
+
+bool Board::findPath(std::vector<Coordinates> visited, Field* from, Item* to_item)
+{
+  std::vector<Coordinates> neighbours = getNeighbours(from->getPosition());
+
+  for (Coordinates neighbour : neighbours)
+  {
+    if (!check_visit(visited, neighbour))
+    {
+      visited.push_back(neighbour);
+      Field* check = board_[neighbour.row_][neighbour.column_];
+      if (check != NULL)
+      {
+        if (neighbour.column_ == to_item->getPosition().column_ &&
+            neighbour.row_ == to_item->getPosition().row_) {
+          return true;
+        }
+
+        if (!check->isBlocked())
+        {
+          if(findPath(visited, check, to_item))
+          {
+            return true;
+          }
+        }
+      }
+    }
+  }
+  return false;
+}
+
+bool Board::check_visit(std::vector<Coordinates> visited, Coordinates coordinates)
+{
+  if (visited.empty())
+  {
+    return false;
+  }
+
+  for (Coordinates coord : visited)
+  {
+    if (coord.row_ == coordinates.row_ && coord.column_ == coordinates.column_)
+    {
+      return true;
+    }
+  }
+  return false;
+}
+
+std::vector<Coordinates> Board::getNeighbours(Coordinates coordinates)
+{
+  std::vector<Coordinates> neighbours;
+
+  if (onBoard({coordinates.row_-1, coordinates.column_}))
+  {
+    neighbours.push_back({coordinates.row_-1,coordinates.column_});
+  }
+
+  if (onBoard({coordinates.row_+1, coordinates.column_}))
+  {
+    neighbours.push_back({coordinates.row_+1,coordinates.column_});
+  }
+
+  if (onBoard({coordinates.row_, coordinates.column_-1}))
+  {
+    neighbours.push_back({coordinates.row_,coordinates.column_-1});
+  }
+
+  if (onBoard({coordinates.row_, coordinates.column_+1}))
+  {
+    neighbours.push_back({coordinates.row_,coordinates.column_+1});
+  }
+
+  return neighbours;
+}
+
+bool Board::onBoard(Coordinates coordinates)
+{
+  if (coordinates.row_ >= 0 && coordinates.row_ < width_)
+  {
+    if (coordinates.column_ >= 0 && coordinates.column_ < height_)
+    {
+      return true;
+    }
+  }
+  return false;
+}
 
 // TODO end
 
